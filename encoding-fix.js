@@ -17,7 +17,7 @@
   const cleanTextNode = (node) => {
     if (!node.nodeValue || shouldSkip(node)) return;
     let text = node.nodeValue;
-    if (!text.includes('�')) return;
+    if (!text.includes('�') && !text.includes('鈥') && !text.includes('欽')) return;
 
     // Context-aware fixes for known Cottonvalle copy.
     text = text
@@ -26,7 +26,9 @@
       .replace(/practical\s*�\s*�\s*suitable/gi, 'practical and suitable')
       .replace(/practical\s*���\s*suitable/gi, 'practical and suitable')
       .replace(/needs\s*�\s*�\s*with/gi, 'needs — with')
-      .replace(/needs\s*���\s*with/gi, 'needs — with');
+      .replace(/needs\s*���\s*with/gi, 'needs — with')
+      .replace(/needs\s+鈥\?with/gi, 'needs — with')
+      .replace(/products\s+鈥\?it/gi, 'products — it');
 
     // Generic fallback.
     for (const [bad, good] of replacements) {
