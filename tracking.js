@@ -1,7 +1,6 @@
-// GA4 Tracking — Replace G-5LM7XBNGSS with your actual GA4 Measurement ID
+// GA4 Tracking — CottonValle
 (function(){
   var gaId = 'G-5LM7XBNGSS';
-  if (gaId === 'G-5LM7XBNGSS') return; // Skip until ID is configured
 
   var s = document.createElement('script');
   s.async = true;
