@@ -7,7 +7,7 @@
 
   var QUOTE_URL = '/quote.html';      // If your deployed route is /quote, change to '/quote'
   var THANK_YOU_URL = '/thank-you.html';
-  var QUOTE_EMAIL = 'icolorpacks@gmail.com';
+  var QUOTE_EMAIL = 'cottonvalle@gmail.com';
   var FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/' + encodeURIComponent(QUOTE_EMAIL);
 
   function textOf(el) {
