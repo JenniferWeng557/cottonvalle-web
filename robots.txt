@@ -21,3 +21,6 @@ User-agent: Amazonbot
 Allow: /
 
 Sitemap: https://www.cottonvalle.com/sitemap.xml
+
+# Machine-readable company and content guide
+# https://www.cottonvalle.com/llms.txt
