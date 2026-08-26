@@ -1,0 +1,70 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  submit-updated-urls:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Submit changed public URLs
+        env:
+          INDEXNOW_KEY: 200816c8f1ac470d85b1fda21ceda7f3
+          SITE_HOST: www.cottonvalle.com
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import subprocess
+          import urllib.request
+
+          host = os.environ['SITE_HOST']
+          base = f'https://{host}'
+          key = os.environ['INDEXNOW_KEY']
+
+          try:
+              changed = subprocess.check_output(
+                  ['git', 'diff', '--name-only', 'HEAD^', 'HEAD'], text=True
+              ).splitlines()
+          except subprocess.CalledProcessError:
+              changed = subprocess.check_output(
+                  ['git', 'ls-files'], text=True
+              ).splitlines()
+
+          urls = set()
+          for path in changed:
+              if path == 'index.html':
+                  urls.add(base + '/')
+              elif path.endswith('.html') and '/' not in path:
+                  urls.add(base + '/' + path[:-5])
+              elif path in {'sitemap.xml', 'robots.txt', 'llms.txt'}:
+                  urls.add(base + '/' + path)
+
+          if not urls:
+              print('No public URLs changed; nothing to submit.')
+              raise SystemExit(0)
+
+          payload = json.dumps({
+              'host': host,
+              'key': key,
+              'keyLocation': f'{base}/{key}.txt',
+              'urlList': sorted(urls),
+          }).encode('utf-8')
+          request = urllib.request.Request(
+              'https://api.indexnow.org/indexnow',
+              data=payload,
+              headers={'Content-Type': 'application/json; charset=utf-8'},
+              method='POST',
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              print(f'IndexNow status: {response.status}')
+              print(f'Submitted {len(urls)} URL(s)')
+          PY
