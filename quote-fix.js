@@ -144,6 +144,7 @@
         .then(function (res) {
           if (!res.ok) throw new Error('Form submit failed');
           try { localStorage.setItem('cottonvalle_last_quote', JSON.stringify(formToObject(form))); } catch (err) {}
+          document.dispatchEvent(new CustomEvent('cottonvalle_quote_success'));
           window.location.href = THANK_YOU_URL;
         })
         .catch(function () {

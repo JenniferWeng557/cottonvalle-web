@@ -31,10 +31,9 @@
       if (el) { gtag('event', 'product_quote_click', { event_category: 'conversion', event_label: el.closest('.card,.product-card') ? (el.closest('.card,.product-card').querySelector('h2,h3')||{}).textContent||'' : '' }); }
     });
 
-    // Quote form submit
-    document.addEventListener('submit', function(e){
-      var form = e.target.closest('#quoteForm, [data-quote-form]');
-      if (form) { gtag('event', 'quote_form_submit', { event_category: 'conversion' }); }
+    // Count a lead only after the quote endpoint confirms success.
+    document.addEventListener('cottonvalle_quote_success', function(){
+      gtag('event', 'generate_lead', { event_category: 'conversion' });
     });
 
     // Email click (mailto links)
