@@ -110,6 +110,13 @@
 
     prefillQuoteFormFromUrl(form);
 
+    var formStarted = false;
+    form.addEventListener('input', function () {
+      if (formStarted) return;
+      formStarted = true;
+      document.dispatchEvent(new CustomEvent('cottonvalle_quote_form_start'));
+    });
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
@@ -119,6 +126,9 @@
       var email = emailField ? emailField.value.trim() : '';
 
       if (!name || !email || email.indexOf('@') === -1) {
+        document.dispatchEvent(new CustomEvent('cottonvalle_quote_form_error', {
+          detail: { type: 'validation' }
+        }));
         alert('Please enter your name and a valid email address.');
         return;
       }
@@ -144,10 +154,13 @@
         .then(function (res) {
           if (!res.ok) throw new Error('Form submit failed');
           try { localStorage.setItem('cottonvalle_last_quote', JSON.stringify(formToObject(form))); } catch (err) {}
-          document.dispatchEvent(new CustomEvent('cottonvalle_quote_success'));
+          try { sessionStorage.setItem('cottonvalle_pending_lead', '1'); } catch (err) {}
           window.location.href = THANK_YOU_URL;
         })
         .catch(function () {
+          document.dispatchEvent(new CustomEvent('cottonvalle_quote_form_error', {
+            detail: { type: 'submission' }
+          }));
           // Fallback: open user's email client so the lead is not lost.
           var data = formToObject(form);
           var subject = encodeURIComponent('New Cottonvalle quote request');

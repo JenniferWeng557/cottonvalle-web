@@ -2,6 +2,14 @@
 (function(){
   var gaId = 'G-5LM7XBNGSS';
 
+  function safeSessionGet(key) {
+    try { return sessionStorage.getItem(key); } catch (err) { return null; }
+  }
+
+  function safeSessionRemove(key) {
+    try { sessionStorage.removeItem(key); } catch (err) {}
+  }
+
   var s = document.createElement('script');
   s.async = true;
   s.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
@@ -13,10 +21,16 @@
     gtag('js', new Date());
     gtag('config', gaId);
 
-    // Floating quote button click
+    // All quote-entry clicks, including the floating button and normal CTAs.
     document.addEventListener('click', function(e){
-      var el = e.target.closest('.floating-quote-btn');
-      if (el) { gtag('event', 'floating_quote_click', { event_category: 'engagement', event_label: el.getAttribute('href') }); }
+      var el = e.target.closest('a[href*="quote"], .floating-quote-btn, .card-quote-btn, .product-quote-btn');
+      if (el && !el.closest('form')) {
+        gtag('event', 'quote_cta_click', {
+          link_url: el.getAttribute('href') || '',
+          link_text: (el.textContent || '').replace(/\s+/g, ' ').trim(),
+          page_location: window.location.href
+        });
+      }
     });
 
     // WhatsApp click
@@ -25,15 +39,15 @@
       if (el) { gtag('event', 'whatsapp_click', { event_category: 'engagement' }); }
     });
 
-    // Product card quote button click
-    document.addEventListener('click', function(e){
-      var el = e.target.closest('.card-quote-btn, .product-quote-btn');
-      if (el) { gtag('event', 'product_quote_click', { event_category: 'conversion', event_label: el.closest('.card,.product-card') ? (el.closest('.card,.product-card').querySelector('h2,h3')||{}).textContent||'' : '' }); }
+    document.addEventListener('cottonvalle_quote_form_start', function(){
+      gtag('event', 'quote_form_start', { form_name: 'quote_form' });
     });
 
-    // Count a lead only after the quote endpoint confirms success.
-    document.addEventListener('cottonvalle_quote_success', function(){
-      gtag('event', 'generate_lead', { event_category: 'conversion' });
+    document.addEventListener('cottonvalle_quote_form_error', function(e){
+      gtag('event', 'quote_form_error', {
+        form_name: 'quote_form',
+        error_type: e.detail && e.detail.type ? e.detail.type : 'unknown'
+      });
     });
 
     // Email click (mailto links)
@@ -41,5 +55,30 @@
       var el = e.target.closest('a[href^="mailto:"]');
       if (el) { gtag('event', 'email_click', { event_category: 'engagement' }); }
     });
+
+    document.addEventListener('click', function(e){
+      var el = e.target.closest('a[href^="tel:"]');
+      if (el) { gtag('event', 'phone_click', { event_category: 'engagement' }); }
+    });
+
+    // The successful form submission stores a one-time marker before redirecting.
+    // Fire the lead on the thank-you page so navigation cannot cancel the hit.
+    if (/\/thank-you(?:\.html)?\/?$/.test(window.location.pathname) && safeSessionGet('cottonvalle_pending_lead') === '1') {
+      var leadCleared = false;
+      var clearLeadMarker = function(){
+        if (leadCleared) return;
+        leadCleared = true;
+        safeSessionRemove('cottonvalle_pending_lead');
+      };
+      gtag('event', 'generate_lead', {
+        form_name: 'quote_form',
+        currency: 'USD',
+        value: 0,
+        transport_type: 'beacon',
+        event_callback: clearLeadMarker,
+        event_timeout: 2000
+      });
+      window.setTimeout(clearLeadMarker, 2200);
+    }
   };
 })();
