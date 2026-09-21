@@ -12,45 +12,5 @@ http://cottonvalle.com/* https://cottonvalle.com/:splat 301!
 /wholesale.html https://cottonvalle.com/wholesale 301
 /printing-methods.html https://cottonvalle.com/printing-methods 301
 
-# Extensionless public URLs served by the static HTML files
-/ /index.html 200
-/products /products.html 200
-/brand-story /brand-story.html 200
-/quote /quote.html 200
-/custom-cotton-tote-bags /custom-cotton-tote-bags.html 200
-/canvas-tote-bags /canvas-tote-bags.html 200
-/organic-cotton-bags /organic-cotton-bags.html 200
-/cotton-drawstring-bags /cotton-drawstring-bags.html 200
-/jute-bags /jute-bags.html 200
-/canvas-zip-pouches /canvas-zip-pouches.html 200
-/fabric-weight-guide /fabric-weight-guide.html 200
-/printing-methods /printing-methods.html 200
-/handles-details /handles-details.html 200
-/retail-packaging /retail-packaging.html 200
-/custom-options /custom-options.html 200
-/retail-brands /retail-brands.html 200
-/events-trade-shows /events-trade-shows.html 200
-/corporate-gifts /corporate-gifts.html 200
-/coffee-shops-bakeries /coffee-shops-bakeries.html 200
-/industries /industries.html 200
-/sewing-workshop /sewing-workshop.html 200
-/printing-quality-control /printing-quality-control.html 200
-/sample-room /sample-room.html 200
-/factory-workflow /factory-workflow.html 200
-/factory /factory.html 200
-/eco-materials /eco-materials.html 200
-/reusable-packaging /reusable-packaging.html 200
-/sustainability-material-guide /sustainability-material-guide.html 200
-/sustainability /sustainability.html 200
-/blog /blog.html 200
-/blog-fabric-weight /blog-fabric-weight.html 200
-/blog-printing-method /blog-printing-method.html 200
-/blog-moq-sampling /blog-moq-sampling.html 200
-/wholesale /wholesale.html 200
-/faq /faq.html 200
-/shipping /shipping.html 200
-/returns /returns.html 200
-/contact /contact.html 200
-
 /sitemap.xml  /sitemap.xml  200
 /robots.txt   /robots.txt   200
