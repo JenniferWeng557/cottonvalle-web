@@ -1,6 +1,11 @@
 // GA4 Tracking — CottonValle
 (function(){
   var cottonvalleWhatsApp = '8618358592551';
+  var swapContactActions = document.createElement('style');
+  swapContactActions.id = 'swap-contact-actions';
+  swapContactActions.textContent = 'a[href*="wa.me"]{left:auto!important;right:20px!important}.floating-quote-btn{right:auto!important;left:20px!important}@media(max-width:768px){a[href*="wa.me"]{right:16px!important;left:auto!important}.floating-quote-btn{left:16px!important;right:auto!important}}';
+  document.head.appendChild(swapContactActions);
+
   function updateWhatsAppLinks() {
     document.querySelectorAll('a[href*=' + JSON.stringify('wa.me') + ']').forEach(function(el){
       var href = el.getAttribute('href') || '';
