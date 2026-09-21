@@ -1,4 +1,4 @@
-/* Cottonvalle quote redirect + form submit fix
+/* Cottonvalle quote redirect + Formspree submit fix
    Copy this file to your site root as /quote-fix.js or /assets/js/quote-fix.js,
    then include it before </body> on every page.
 */
@@ -8,7 +8,7 @@
   var QUOTE_URL = '/quote.html';      // If your deployed route is /quote, change to '/quote'
   var THANK_YOU_URL = '/thank-you.html';
   var QUOTE_EMAIL = 'cottonvalle@gmail.com';
-  var FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/ajax/' + encodeURIComponent(QUOTE_EMAIL);
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeypklz';
 
   function textOf(el) {
     return (el.textContent || el.value || '').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -106,7 +106,7 @@
     if (form.dataset.quoteFixed === '1') return;
     form.dataset.quoteFixed = '1';
     form.setAttribute('method', 'POST');
-    form.setAttribute('action', FORMSUBMIT_ENDPOINT);
+    form.setAttribute('action', FORMSPREE_ENDPOINT);
 
     prefillQuoteFormFromUrl(form);
 
@@ -144,9 +144,9 @@
       var fd = new FormData(form);
       fd.set('_subject', 'New quote request from Cottonvalle.com');
       fd.set('_template', 'table');
-      fd.set('_captcha', 'false');
+      fd.set('_replyto', email);
 
-      fetch(FORMSUBMIT_ENDPOINT, {
+      fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: fd

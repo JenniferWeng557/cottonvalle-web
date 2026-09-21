@@ -1,5 +1,14 @@
 // GA4 Tracking — CottonValle
 (function(){
+  var cottonvalleWhatsApp = '8618358592551';
+  function updateWhatsAppLinks() {
+    document.querySelectorAll('a[href*=' + JSON.stringify('wa.me') + ']').forEach(function(el){
+      var href = el.getAttribute('href') || '';
+      el.setAttribute('href', 'https://wa.me/' + cottonvalleWhatsApp + (href.indexOf('?') >= 0 ? href.slice(href.indexOf('?')) : ''));
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', updateWhatsAppLinks);
+  else updateWhatsAppLinks();
   var gaId = 'G-5LM7XBNGSS';
 
   function safeSessionGet(key) {
