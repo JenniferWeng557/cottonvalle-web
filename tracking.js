@@ -10,9 +10,16 @@
     document.querySelectorAll('a[href*=' + JSON.stringify('wa.me') + ']').forEach(function(el){
       var href = el.getAttribute('href') || '';
       el.setAttribute('href', 'https://wa.me/' + cottonvalleWhatsApp + (href.indexOf('?') >= 0 ? href.slice(href.indexOf('?')) : ''));
+      el.style.setProperty('left', 'auto', 'important');
+      el.style.setProperty('right', '20px', 'important');
+    });
+    document.querySelectorAll('.floating-quote-btn').forEach(function(el){
+      el.style.setProperty('right', 'auto', 'important');
+      el.style.setProperty('left', '20px', 'important');
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', updateWhatsAppLinks);
+  window.addEventListener('load', updateWhatsAppLinks);
   else updateWhatsAppLinks();
   var gaId = 'G-5LM7XBNGSS';
 
