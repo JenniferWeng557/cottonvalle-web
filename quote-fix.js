@@ -8,7 +8,7 @@
   var QUOTE_URL = '/quote.html';      // If your deployed route is /quote, change to '/quote'
   var THANK_YOU_URL = '/thank-you.html';
   var QUOTE_EMAIL = 'cottonvalle@gmail.com';
-  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeypklz';
+  var FORMSPREE_ENDPOINT = 'https://formspree.io/f/mbglgkak';
 
   function textOf(el) {
     return (el.textContent || el.value || '').replace(/\s+/g, ' ').trim().toLowerCase();
