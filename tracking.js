@@ -18,9 +18,12 @@
       el.style.setProperty('left', '20px', 'important');
     });
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', updateWhatsAppLinks);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateWhatsAppLinks);
+  } else {
+    updateWhatsAppLinks();
+  }
   window.addEventListener('load', updateWhatsAppLinks);
-  else updateWhatsAppLinks();
   var gaId = 'G-5LM7XBNGSS';
 
   function safeSessionGet(key) {
@@ -103,3 +106,4 @@
     }
   };
 })();
+
