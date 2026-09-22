@@ -3,7 +3,7 @@
   var cottonvalleWhatsApp = '8618358592551';
   var swapContactActions = document.createElement('style');
   swapContactActions.id = 'swap-contact-actions';
-  swapContactActions.textContent = 'a[href*="wa.me"]{left:auto!important;right:20px!important}.floating-quote-btn{right:auto!important;left:20px!important}@media(max-width:768px){a[href*="wa.me"]{right:16px!important;left:auto!important}.floating-quote-btn{left:16px!important;right:auto!important}}';
+  swapContactActions.textContent = 'a[href*="wa.me"]{left:auto!important;right:20px!important;bottom:28px!important;width:68px!important;height:68px!important}a[href*="wa.me"] svg{width:34px!important;height:34px!important}.floating-quote-btn{right:auto!important;left:20px!important}@media(max-width:768px){a[href*="wa.me"]{right:16px!important;left:auto!important;bottom:18px!important;width:60px!important;height:60px!important}.floating-quote-btn{left:16px!important;right:auto!important}}';
   document.head.appendChild(swapContactActions);
 
   function updateWhatsAppLinks() {
@@ -106,4 +106,5 @@
     }
   };
 })();
+
 
