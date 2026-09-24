@@ -1,7 +1,7 @@
 # Canonical host and homepage
-https://cottonvalle.com/* https://www.cottonvalle.com/:splat 301!
-http://www.cottonvalle.com/* https://www.cottonvalle.com/:splat 301!
-http://cottonvalle.com/* https://www.cottonvalle.com/:splat 301!
+https://cottonvalle.com/* https://www.cottonvalle.com/:splat 301
+http://www.cottonvalle.com/* https://www.cottonvalle.com/:splat 301
+http://cottonvalle.com/* https://www.cottonvalle.com/:splat 301
 /index https://www.cottonvalle.com/ 301
 /index.html https://www.cottonvalle.com/ 301
 
