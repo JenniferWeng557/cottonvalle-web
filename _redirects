@@ -1,16 +1,17 @@
 # Canonical host and homepage
-https://www.cottonvalle.com/* https://cottonvalle.com/:splat 301!
-http://www.cottonvalle.com/* https://cottonvalle.com/:splat 301!
-http://cottonvalle.com/* https://cottonvalle.com/:splat 301!
-/index https://cottonvalle.com/ 301
-/index.html https://cottonvalle.com/ 301
+https://cottonvalle.com/* https://www.cottonvalle.com/:splat 301!
+http://www.cottonvalle.com/* https://www.cottonvalle.com/:splat 301!
+http://cottonvalle.com/* https://www.cottonvalle.com/:splat 301!
+/index https://www.cottonvalle.com/ 301
+/index.html https://www.cottonvalle.com/ 301
 
 # Legacy .html URLs reported by Google Search Console
-/brand-story.html https://cottonvalle.com/brand-story 301
-/faq.html https://cottonvalle.com/faq 301
-/products.html https://cottonvalle.com/products 301
-/wholesale.html https://cottonvalle.com/wholesale 301
-/printing-methods.html https://cottonvalle.com/printing-methods 301
+/brand-story.html https://www.cottonvalle.com/brand-story 301
+/faq.html https://www.cottonvalle.com/faq 301
+/products.html https://www.cottonvalle.com/products 301
+/wholesale.html https://www.cottonvalle.com/wholesale 301
+/printing-methods.html https://www.cottonvalle.com/printing-methods 301
 
 /sitemap.xml  /sitemap.xml  200
 /robots.txt   /robots.txt   200
+

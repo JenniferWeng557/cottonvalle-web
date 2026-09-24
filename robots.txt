@@ -20,7 +20,8 @@ Allow: /
 User-agent: Amazonbot
 Allow: /
 
-Sitemap: https://cottonvalle.com/sitemap.xml
+Sitemap: https://www.cottonvalle.com/sitemap.xml
 
 # Machine-readable company and content guide
 # https://www.cottonvalle.com/llms.txt
+
