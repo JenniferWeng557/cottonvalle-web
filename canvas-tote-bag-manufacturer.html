@@ -400,7 +400,34 @@
         padding: 28px;
         box-shadow: 0 14px 42px rgba(36, 35, 31, 0.05);
       }
-      .feature-grid {
+      .sticky-panel {
+        position: sticky;
+        top: 112px;
+      }
+      .quick-specs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin: 20px 0;
+      }
+      .quick-specs div {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: #f7f2e8;
+        border: 1px solid var(--line);
+      }
+      .quick-specs strong {
+        display: block;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: #847b6d;
+      }
+      .quick-specs span {
+        display: block;
+        margin-top: 3px;
+        font-weight: 800;
+      }      .feature-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
@@ -811,7 +838,11 @@
           font-size: 20px;
         }
       }
-    </style>
+          @media (max-width: 1100px) {
+        .sticky-panel {
+          position: static;
+        }
+      }</style>
     <link rel="icon" type="image/png" href="assets/logo.png" />
     <script src="/tracking.js" defer></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What should I check in a canvas tote bag manufacturer?","acceptedAnswer":{"@type":"Answer","text":"Compare construction experience, sampling, printing controls, quality checkpoints, packing and communication."}},{"@type":"Question","name":"Why is a canvas tote sample important?","acceptedAnswer":{"@type":"Answer","text":"A sample lets the buyer confirm dimensions, hand feel, handles, seams and logo placement before bulk production."}}]}</script></head>
@@ -958,9 +989,15 @@
           <h3>4. Quality checkpoints</h3><p class="muted">Ask when size, stitching, print placement, color and packing are checked. A simple written checklist makes repeat orders easier to manage.</p>
           <h3>5. Export packing and communication</h3><p class="muted">Clarify carton marks, individual packing, labels, lead-time updates and the destination market. Good communication reduces surprises after approval.</p>
         </article>
-        <aside class="panel">
+        <aside class="panel sticky-panel">
           <h3 style="margin-top: 0">Plan your bag project</h3>
-          <p class="muted">Share your bag style, dimensions, fabric preference, artwork, quantity and delivery market. We can recommend a practical sample path.</p>
+                    <p class="muted">Share your bag style, dimensions, fabric preference, artwork, quantity and delivery market. We can recommend a practical sample path.</p>
+          <div class="quick-specs" aria-label="Canvas tote bag quick specifications">
+            <div><strong>MOQ</strong><span>100 pcs</span></div>
+            <div><strong>Samples</strong><span>3–5 days</span></div>
+            <div><strong>Bulk lead time</strong><span>7–15 days</span></div>
+            <div><strong>Printing</strong><span>Custom logo</span></div>
+          </div>
           <a class="btn secondary" style="margin: 6px 0" href="products">Browse Bag Styles</a><br />
           <a class="btn secondary" style="margin: 6px 0" href="custom-options">Compare Custom Options</a><br />
           <a class="btn primary" style="margin: 6px 0" href="quote">Request a Quote</a>
@@ -1006,6 +1043,8 @@
     <script src="/encoding-fix.js"></script>
   </body>
 </html>
+
+
 
 
 
